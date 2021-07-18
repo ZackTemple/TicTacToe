@@ -8,4 +8,4 @@ This project was created to demonstrate a simple ReactJS application using AWS S
 
 ### CI/CD
 
-On push, the project is set up in [Buddy](https://app.buddy.works/) to install dependencies, run tests, and build and upload code to S3
+On push, a pipeline is set up in [Buddy](https://app.buddy.works/) to install dependencies, run tests, and build and upload code to S3.

@@ -10,9 +10,5 @@ header {
   font-family: "Times New Roman";
   text-shadow: 2px 2px 5px darkorange;
   text-align: center;
-  position: fixed;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  color: black;
+  line-height: 50vh;
 }

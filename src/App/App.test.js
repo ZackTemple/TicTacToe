@@ -1,20 +1,25 @@
-import { render, screen } from '@testing-library/react';
-import App from './index.js';
+import App from './App';
+import { shallow } from 'enzyme';
 
-describe('App component', () => {
+describe('App', () => {
+  let mountedApp;
+
   beforeEach(() => {
-    render(<App />);
+    mountedApp = shallow(<App />);
   });
 
-  it('should contain the home image for tic-tac-toe', () => {
-    const image = screen.getByAltText('home-logo');
-
-    expect(image).toHaveAttribute('src', 'tictactoe.png');
+  it('should render without errors', () => {
   });
 
-  it('should contain text', () => {
-    const text = screen.getByText('Coming soon!');
+  it('should render a Banner component', () => {
+    const games = mountedApp.find('Banner');
 
-    expect(text).toBeInTheDocument();
+    expect(games.length).toBe(1);
+  });
+
+  it('should render a Game component', () => {
+    const games = mountedApp.find('Game');
+
+    expect(games.length).toBe(1);
   });
 });

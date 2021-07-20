@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import Banner from './Banner';
-import logo from '../../public/images/tictactoe.png';
+import logo from './tictactoe.png';
 
 describe('Banner', () => {
   let mountedBanner;

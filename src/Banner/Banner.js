@@ -1,5 +1,5 @@
 import { Component } from "react";
-import logo from '../../public/images/tictactoe.png';
+import logo from './tictactoe.png';
 
 class Banner extends Component {
   render() {

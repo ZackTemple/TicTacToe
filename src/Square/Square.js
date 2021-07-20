@@ -2,7 +2,11 @@ import { Component } from "react";
 
 class Square extends Component {
   render() {
-    return "";
+    return (
+      <button>
+
+      </button>
+    );
   }
 }
 

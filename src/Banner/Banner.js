@@ -1,3 +1,4 @@
+import './Banner.css';
 import { Component } from "react";
 import logo from './tictactoe.png';
 

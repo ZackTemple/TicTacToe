@@ -8,5 +8,6 @@
   font-weight: bold;
   width: 150px;
   padding: 10px;
-  border-radius: 3px;
+  border-radius: 1px;
+  cursor: pointer;
 }

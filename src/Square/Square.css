@@ -1,10 +1,10 @@
 .Square {
   background: white;
-  border: 2px solid black;
+  border: 1px solid black;
   float: left;
   line-height: 25vw;
   margin-right: -1px;
-  margin-top: -2px;
+  margin-top: -1px;
   padding: 0;
   text-align: center;
   width: 25vw;
@@ -18,11 +18,11 @@
 
 @media (min-width: 700px) {
   .Square {
-    line-height: 34px;
-    margin-top: -1px;
     aspect-ratio: 1/1;
     height: 9rem;
     font-size: 4rem;
     width: unset;
+    line-height: unset;
+    cursor: pointer;
   }
 }

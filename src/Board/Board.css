@@ -1,0 +1,8 @@
+.Board {
+  margin: 2rem 0;
+}
+
+.board-row {
+  display: flex;
+  justify-content: center;
+}

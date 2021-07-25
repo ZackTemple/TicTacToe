@@ -15,5 +15,11 @@ describe('Game', () => {
 
     expect(board.length).toBe(1);
   });
+
+  it('should render a GameInformation component', () => {
+    const gameInfo = mountedGame.find('GameInformation');
+
+    expect(gameInfo.length).toBe(1);
+  })
 });
 

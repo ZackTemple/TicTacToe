@@ -3,3 +3,9 @@
   font-weight: bold;
   text-align: center;
 }
+
+@media (min-width: 700px) {
+  .turn {
+    font-size: 18px;
+  }
+}

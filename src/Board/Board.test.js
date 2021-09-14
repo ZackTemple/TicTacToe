@@ -1,11 +1,15 @@
 import { shallow } from "enzyme";
+import { originalBoardState } from "../Shared/constants";
 import Board from './Board';
 
 describe('Board', () => {
   let mountedBoard;
 
   beforeEach(() => {
-    mountedBoard = shallow(<Board />);
+    const props = {
+      board: originalBoardState()
+    }
+    mountedBoard = shallow(<Board {...props}/>);
   });
 
   it('should mount without errors', () => { });

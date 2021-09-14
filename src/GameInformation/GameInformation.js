@@ -2,11 +2,27 @@ import { Component } from "react";
 import './GameInformation.css';
 
 class GameInformation extends Component {
-  render() {
+  displayPlayerTurn() {
     return (
       <div className="turn">
-        Turn: Player 1
+        Turn: {this.props.currentPlayer}
       </div>
+    );
+  }
+
+  displayWinner() {
+    return (
+      <div className="turn">
+        Winner: {this.props.winner}
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      this.props.winner ?
+      this.displayWinner() :
+        this.displayPlayerTurn()
     );
   }
 }

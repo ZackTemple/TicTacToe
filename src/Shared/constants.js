@@ -2,7 +2,7 @@ export function originalGameState() {
   return {
     board: originalBoardState(),
     winner: null,
-    currentPlayer: 'X',
+    humansTurn: true,
     moveNumber: 0
   }
 }
@@ -23,7 +23,8 @@ export function getNextPlayer(currentPlayer) {
     'X';
 }
 
-export function getWinner(board, row, column, player) {
+export function getWinner(board, row, column, humansTurn) {
+  const player = humansTurn ? 'X' : 'O';
   const rowWinner = board[row].every(box => box === player);
   const columnWinner = board.every(row => row[column] === player);
 
@@ -59,14 +60,11 @@ export function boardIsFull(board, moveNumber) {
   return moveNumber === board.length ** 2;
 }
 
-export function makeMove(currentBoard, currentPlayer, row, column) {
-  const squares = currentBoard.slice();
-  squares[row][column] = currentPlayer;
+export function placeMove(currentBoard, humansTurn, row, column) {
+  const newBoard = currentBoard.slice();
+  newBoard[row][column] = humansTurn ? 'X' : 'O';
 
-  const winner = getWinner(squares, row, column, currentPlayer);
-  const nextPlayer = getNextPlayer(currentPlayer)
-
-  return [squares, nextPlayer, winner];
+  return newBoard;
 }
 
 export function getFirstOpenSquare(board) {

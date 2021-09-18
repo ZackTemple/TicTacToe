@@ -4,8 +4,9 @@ import GameInformation from "../GameInformation/GameInformation";
 import {
   originalGameState,
   isValidMove,
-  makeMove,
-  getFirstOpenSquare
+  placeMove,
+  getFirstOpenSquare,
+  getWinner
 } from "../Shared/constants";
 import './Game.css';
 
@@ -15,15 +16,17 @@ class Game extends Component {
     this.state = originalGameState();
   }
 
-  computerCanPlay = () => !this.state.winner && this.state.currentPlayer === 'O';
+  canPlaceMove = (row, column) => isValidMove(this.state.board, row, column) && !this.state.winner;
+  computerCanPlay = () => !this.state.winner && !this.state.humansTurn;
 
   handleMove(row, column) {
-    if (isValidMove(this.state.board, row, column) && !this.state.winner) {
-      let [newBoard, nextPlayer, winner] = makeMove(this.state.board, this.state.currentPlayer, row, column);
+    if (this.canPlaceMove(row, column)) {
+      const newBoard = placeMove(this.state.board, this.state.humansTurn, row, column);
+      const winner = getWinner(newBoard, row, column, this.state.humansTurn);
 
       this.setState({
-        squares: newBoard,
-        currentPlayer: nextPlayer,
+        board: newBoard,
+        humansTurn: false,
         winner: winner,
         moveNumber: this.state.moveNumber + 1
       }, () => {
@@ -33,18 +36,17 @@ class Game extends Component {
   }
 
   makeComputerMove() {
-    let [row, column] = getFirstOpenSquare(this.state.board);
-    this.handleMove(row, column);
-  }
+    const [row, column] = getFirstOpenSquare(this.state.board);
+    const newBoard = placeMove(this.state.board, this.state.humansTurn, row, column);
+    const winner = getWinner(newBoard, row, column, this.state.humansTurn);
 
-  setNewBoardState(squares, nextPlayer, winner, updatedMoveNumber) {
     this.setState({
-      squares: squares,
-      currentPlayer: nextPlayer,
+      board: newBoard,
+      humansTurn: true,
       winner: winner,
-      moveNumber: updatedMoveNumber
+      moveNumber: this.state.moveNumber + 1
     });
-  };
+  }
 
   restartGame() {
     this.setState(originalGameState());

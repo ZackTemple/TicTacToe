@@ -2,7 +2,8 @@ export function originalGameState() {
   return {
     board: originalBoardState(),
     winner: null,
-    currentPlayer: 'X'
+    currentPlayer: 'X',
+    moveNumber: 0
   }
 }
 
@@ -52,4 +53,25 @@ function diagonalHasWinner(board, player, checkDiagonalWithLikeIndices) {
   }
 
   return true;
+}
+
+export function boardIsFull(board, moveNumber) {
+  return moveNumber === board.length ** 2;
+}
+
+export function makeMove(currentBoard, currentPlayer, row, column) {
+  const squares = currentBoard.slice();
+  squares[row][column] = currentPlayer;
+
+  const winner = getWinner(squares, row, column, currentPlayer);
+  const nextPlayer = getNextPlayer(currentPlayer)
+
+  return [squares, nextPlayer, winner];
+}
+
+export function getFirstOpenSquare(board) {
+  for (let rowIndex = 0; rowIndex < board.length; rowIndex++) {
+    let columnIndex = board[rowIndex].indexOf(null);
+    if (columnIndex !== -1) return [rowIndex, columnIndex];
+  }
 }

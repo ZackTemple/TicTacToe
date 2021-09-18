@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { boardIsFull } from '../Shared/constants';
 import './GameInformation.css';
 
 class GameInformation extends Component {
@@ -18,11 +19,21 @@ class GameInformation extends Component {
     );
   }
 
+  displayTie() {
+    return (
+      <div className="turn">
+        Tie
+      </div>
+    );
+  }
+
   render() {
     return (
       this.props.winner ?
-      this.displayWinner() :
-        this.displayPlayerTurn()
+        this.displayWinner() :
+        boardIsFull(this.props.board, this.props.moveNumber) ?
+          this.displayTie() :
+          this.displayPlayerTurn()
     );
   }
 }

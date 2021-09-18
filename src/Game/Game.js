@@ -2,10 +2,10 @@ import { Component } from "react";
 import Board from '../Board/Board';
 import GameInformation from "../GameInformation/GameInformation";
 import {
-  getNextPlayer,
-  getWinner,
   originalGameState,
-  isValidMove
+  isValidMove,
+  makeMove,
+  getFirstOpenSquare
 } from "../Shared/constants";
 import './Game.css';
 
@@ -15,21 +15,36 @@ class Game extends Component {
     this.state = originalGameState();
   }
 
+  computerCanPlay = () => !this.state.winner && this.state.currentPlayer === 'O';
+
   handleMove(row, column) {
     if (isValidMove(this.state.board, row, column) && !this.state.winner) {
-      const squares = this.state.board.slice();
-      squares[row][column] = this.state.currentPlayer;
-
-      const winner = getWinner(squares, row, column, this.state.currentPlayer);
-      const nextPlayer = getNextPlayer(this.state.currentPlayer)
+      let [newBoard, nextPlayer, winner] = makeMove(this.state.board, this.state.currentPlayer, row, column);
 
       this.setState({
-        squares: squares,
+        squares: newBoard,
         currentPlayer: nextPlayer,
-        winner: winner
+        winner: winner,
+        moveNumber: this.state.moveNumber + 1
+      }, () => {
+        if (this.computerCanPlay()) this.makeComputerMove();
       });
     }
   }
+
+  makeComputerMove() {
+    let [row, column] = getFirstOpenSquare(this.state.board);
+    this.handleMove(row, column);
+  }
+
+  setNewBoardState(squares, nextPlayer, winner, updatedMoveNumber) {
+    this.setState({
+      squares: squares,
+      currentPlayer: nextPlayer,
+      winner: winner,
+      moveNumber: updatedMoveNumber
+    });
+  };
 
   restartGame() {
     this.setState(originalGameState());

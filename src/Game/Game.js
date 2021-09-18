@@ -12,7 +12,6 @@ import {
   GameMode
 } from "../Shared/constants";
 import './Game.css';
-import Button from 'react-bootstrap/Button';
 
 class Game extends Component {
   constructor(props) {
@@ -67,7 +66,7 @@ class Game extends Component {
       <div className="Game">
         <GameInformation {...this.state} onClick={() => this.switchGameMode()}/>
         <Board {...this.state} onClick={() => this.handleMove.bind(this)}/>
-        <Button className="btn btn-light restart-button" onClick={() => this.restartGame()}>Restart</Button>
+        <button className="restart-button" onClick={() => this.restartGame()}>Restart</button>
       </div>
     );
   }

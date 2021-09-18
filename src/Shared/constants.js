@@ -4,7 +4,7 @@ export function originalGameState() {
     winner: null,
     humansTurn: true,
     moveNumber: 0,
-    gameMode: GameMode.Hard
+    gameMode: GameMode.Easy
   }
 }
 

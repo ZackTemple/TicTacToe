@@ -8,7 +8,8 @@ import {
   getRandomSquare,
   getWinner,
   boardIsFull,
-  getSmartSquare
+  getSmartSquare,
+  GameMode
 } from "../Shared/constants";
 import './Game.css';
 import Button from 'react-bootstrap/Button';
@@ -32,7 +33,9 @@ class Game extends Component {
   }
 
   makeComputerMove() {
-    const [row, column] = getRandomSquare(this.state.board, this.state.moveNumber);
+    const [row, column] = this.state.gameMode === GameMode.Easy ?
+      getRandomSquare(this.state.board, this.state.moveNumber) :
+      getSmartSquare(this.state.board, this.state.moveNumber);
     const newBoard = placeMove(this.state.board, this.state.humansTurn, row, column);
     const winner = getWinner(newBoard, row, column, this.state.humansTurn);
 
@@ -54,10 +57,15 @@ class Game extends Component {
     this.setState(originalGameState());
   }
 
+  switchGameMode() {
+    const newGameMode = this.state.gameMode === GameMode.Easy ? GameMode.Hard : GameMode.Easy;
+    this.setState({gameMode: newGameMode});
+  }
+
   render() {
     return (
       <div className="Game">
-        <GameInformation {...this.state}/>
+        <GameInformation {...this.state} onClick={() => this.switchGameMode()}/>
         <Board {...this.state} onClick={() => this.handleMove.bind(this)}/>
         <Button className="btn btn-light restart-button" onClick={() => this.restartGame()}>Restart</Button>
       </div>

@@ -7,9 +7,21 @@ import Button from 'react-bootstrap/Button';
 class GameInformation extends Component {
   gameModeIsEasy = () => this.props.gameMode === GameMode.Easy;
 
+  gameModeSetting() {
+    return (
+      <form className="game-mode-buttons game-info">
+          <div className="game-info-text">Game Mode</div>
+          <input type="radio" checked="checked" onClick={() => this.props.onClick()}></input>
+          <label for="html" className="game-mode-label">Easy</label>
+          <input type="radio" onClick={() => this.props.onClick()}></input>
+          <label for="css" className="game-mode-label">Hard</label>
+        </form>
+    );
+  }
+
   displayPlayerTurn() {
     return (
-      <div className="turn">
+      <div className="turn game-info">
         Turn: {this.props.humansTurn ? Pieces.Human : Pieces.Computer}
       </div>
     );
@@ -17,7 +29,7 @@ class GameInformation extends Component {
 
   displayWinner() {
     return (
-      <div className="turn">
+      <div className="turn game-info">
         Winner: {this.props.winner}
       </div>
     );
@@ -25,7 +37,7 @@ class GameInformation extends Component {
 
   displayTie() {
     return (
-      <div className="turn">
+      <div className="turn game-info">
         Tie
       </div>
     );
@@ -41,14 +53,7 @@ class GameInformation extends Component {
 
   render() {
     return (
-      <div>
-        {this.userMessage()}
-        {/* <button className='gameMode'>{this.gameModeIsEasy() ? 'Hard' : 'Easy'}</button> */}
-        <ButtonGroup aria-label="Basic example">
-          <Button variant="secondary">Easy</Button>
-          <Button variant="secondary">Hard</Button>
-        </ButtonGroup>
-      </div>
+      this.props.moveNumber === 0 ? this.gameModeSetting() : this.userMessage()
     );
   }
 }

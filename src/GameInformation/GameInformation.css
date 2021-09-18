@@ -1,5 +1,13 @@
-.turn {
+.game-info {
   font-size: 2rem;
   font-weight: bold;
+}
+
+.game-mode-label {
+  font-size: 1rem;
+  font-weight: unset;
+}
+
+.turn {
   text-align: center;
 }

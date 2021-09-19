@@ -1,6 +1,7 @@
 .game-info {
   font-size: 2rem;
   font-weight: bold;
+  height: 5rem;
 }
 
 .game-mode-label {
@@ -10,4 +11,8 @@
 
 .turn {
   text-align: center;
+  height: 5rem;
+  line-height: 2.5;
+  display: inline-block;
+  vertical-align: middle;
 }

@@ -57,7 +57,6 @@ class Game extends Component {
   }
 
   switchGameMode($event) {
-    console.log($event.target.value)
     const newGameMode = $event.target.value === GameMode.Easy ? GameMode.Easy : GameMode.Hard;
     this.setState({gameMode: newGameMode});
   }

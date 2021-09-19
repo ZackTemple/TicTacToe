@@ -18,12 +18,6 @@ export function isValidMove(board, row, column) {
   return board[row][column] === null;
 }
 
-export function getNextPlayer(currentPlayer) {
-  return currentPlayer === 'X' ?
-    'O' :
-    'X';
-}
-
 export function getWinner(board, row, column, humansTurn) {
   const player = humansTurn ? 'X' : 'O';
   const rowWinner = board[row].every(box => box === player);

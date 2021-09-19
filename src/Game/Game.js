@@ -10,7 +10,7 @@ import {
   boardIsFull,
   getSmartSquare,
   GameMode
-} from "../Shared/constants";
+} from "../Shared/helpers";
 import './Game.css';
 
 class Game extends Component {

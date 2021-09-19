@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import { originalBoardState } from "../Shared/constants";
+import { originalBoardState } from "../Shared/helpers";
 import Board from './Board';
 
 describe('Board', () => {

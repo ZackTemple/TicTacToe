@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { boardIsFull, Pieces, GameMode } from '../Shared/constants';
+import { boardIsFull, Pieces, GameMode } from '../Shared/helpers';
 import './GameInformation.css';
 
 class GameInformation extends Component {

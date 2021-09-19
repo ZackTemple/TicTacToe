@@ -1,6 +1,6 @@
 import GameInformation from './GameInformation';
 import { shallow } from 'enzyme';
-import { originalBoardState } from '../Shared/constants'
+import { originalBoardState } from '../Shared/helpers'
 
 describe('GameInformation', () => {
   let mountedGameInformation;

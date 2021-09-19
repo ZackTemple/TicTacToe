@@ -8,12 +8,12 @@ class GameInformation extends Component {
   gameModeSetting() {
     return (
       <form className="game-mode-buttons game-info">
-          <div className="game-info-text">Game Mode</div>
-          <input type="radio" checked="checked" onClick={() => this.props.onClick()}></input>
-          <label for="html" className="game-mode-label">Easy</label>
-          <input type="radio" onClick={() => this.props.onClick()}></input>
-          <label for="css" className="game-mode-label">Hard</label>
-        </form>
+        <div className="game-info-text">Game Mode:</div>
+        <input type="radio" id="easy" name="fav_language" value="Easy" defaultChecked onChange={this.props.onChange}></input>
+        <label for="easy" className="game-mode-label">Easy</label>
+        <input type="radio" id="hard" name="fav_language" value="Hard" onChange={this.props.onChange}></input>
+        <label for="hard" className="game-mode-label">Hard</label>
+      </form>
     );
   }
 

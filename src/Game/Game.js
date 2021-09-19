@@ -56,15 +56,16 @@ class Game extends Component {
     this.setState(originalGameState());
   }
 
-  switchGameMode() {
-    const newGameMode = this.state.gameMode === GameMode.Easy ? GameMode.Hard : GameMode.Easy;
+  switchGameMode($event) {
+    console.log($event.target.value)
+    const newGameMode = $event.target.value === GameMode.Easy ? GameMode.Easy : GameMode.Hard;
     this.setState({gameMode: newGameMode});
   }
 
   render() {
     return (
       <div className="Game">
-        <GameInformation {...this.state} onClick={() => this.switchGameMode()}/>
+        <GameInformation {...this.state} onChange={this.switchGameMode.bind(this)}/>
         <Board {...this.state} onClick={() => this.handleMove.bind(this)}/>
         <button className="restart-button" onClick={() => this.restartGame()}>Restart</button>
       </div>

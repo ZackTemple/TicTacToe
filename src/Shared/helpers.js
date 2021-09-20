@@ -18,6 +18,7 @@ export function isValidMove(board, row, column) {
   return board[row][column] === null;
 }
 
+// This function could be a lot cleaner, but it's designed to have N x N capabilities (any numebr of rows and columns)
 export function getWinner(board, row, column, humansTurn) {
   const player = humansTurn ? 'X' : 'O';
   const rowWinner = board[row].every(box => box === player);
@@ -25,12 +26,17 @@ export function getWinner(board, row, column, humansTurn) {
 
   const rowColumnDifference = Math.abs(row - column);
   const isDiagonalPlacement = rowColumnDifference % (board.length - 1) === 0;
+  const isDiagonalWithLikeIndices = rowColumnDifference === 0;
+
+  const middleSquareIndexNumber = Math.floor(board.length / 2);
+  const checkBothDiagonals = row === middleSquareIndexNumber && rowColumnDifference === 0;
 
   let diagonalWinner = false;
-  if (isDiagonalPlacement) {
-    diagonalWinner = rowColumnDifference === 0 ?
-      diagonalHasWinner(board, player, true) :
-      diagonalHasWinner(board, player, false);
+
+  if (isDiagonalPlacement && checkBothDiagonals) {
+    diagonalWinner = diagonalHasWinner(board, player, true)  || diagonalHasWinner(board, player, false);
+  } else if (isDiagonalPlacement) {
+    diagonalWinner = isDiagonalWithLikeIndices ? diagonalHasWinner(board, player, true) : diagonalHasWinner(board, player, false);
   }
 
   const hasWinner = rowWinner || columnWinner || diagonalWinner;

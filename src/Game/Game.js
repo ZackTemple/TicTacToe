@@ -7,8 +7,7 @@ import {
   placeMove,
   getSquare,
   getWinner,
-  boardIsFull,
-  GameMode
+  boardIsFull
 } from "../Shared/helpers";
 import './Game.css';
 

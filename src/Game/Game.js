@@ -27,7 +27,6 @@ class Game extends Component {
       const newBoard = placeMove(this.state.board, this.state.humansTurn, row, column);
       const winner = getWinner(newBoard, row, column, this.state.humansTurn);
 
-      console.log(newBoard, winner);
       this.setNewState(newBoard, false, winner)
     }
   }
@@ -54,7 +53,7 @@ class Game extends Component {
   }
 
   restartGame() {
-    this.setState(originalGameState());
+    this.setState(originalGameState(this.state.gameMode));
   }
 
   switchGameMode($event) {

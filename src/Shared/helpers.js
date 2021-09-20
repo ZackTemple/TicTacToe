@@ -1,10 +1,10 @@
-export function originalGameState() {
+export function originalGameState(gameMode = GameMode.Easy) {
   return {
     board: originalBoardState(),
     winner: null,
     humansTurn: true,
     moveNumber: 0,
-    gameMode: GameMode.Easy
+    gameMode
   }
 }
 

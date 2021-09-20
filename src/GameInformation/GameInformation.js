@@ -4,6 +4,8 @@ import './GameInformation.css';
 
 class GameInformation extends Component {
   gameModeIsEasy = () => this.props.gameMode === GameMode.Easy;
+  gameModeIsMedium = () => this.props.gameMode === GameMode.Medium;
+  gameModeIsHard = () => this.props.gameMode === GameMode.Hard;
 
   gameModeSetting() {
     return (
@@ -17,16 +19,26 @@ class GameInformation extends Component {
           checked={this.gameModeIsEasy()}
           onChange={this.props.onChange}>
         </input>
-        <label for="easy" className="game-mode-label">Easy</label>
+        <label htmlFor="easy" className="game-mode-label">Easy</label>
+        {'\u00A0'} {/* Needed to add due to html forms not giving space */}
+        <input
+          type="radio"
+          id="medium"
+          name="fav_language"
+          value="Medium"
+          checked={this.gameModeIsMedium()}
+          onChange={this.props.onChange}>
+        </input>
+        <label htmlFor="medium" className="game-mode-label">Medium</label>
         <input
           type="radio"
           id="hard"
           name="fav_language"
           value="Hard"
-          checked={!this.gameModeIsEasy()}
+          checked={this.gameModeIsHard()}
           onChange={this.props.onChange}>
         </input>
-        <label for="hard" className="game-mode-label">Hard</label>
+        <label htmlFor="hard" className="game-mode-label">Hard</label>
       </form>
     );
   }

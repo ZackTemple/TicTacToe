@@ -73,6 +73,15 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+export function getSquare(board, currentMoveNumber, gameMode) {
+  return gameMode === GameMode.Easy ?
+    getRandomSquare(board) :
+    gameMode === GameMode.Medium ?
+    getWeightedSquare(board, currentMoveNumber) :
+    getBestSquare(board, currentMoveNumber);
+}
+
+// GameMode: Easy
 export function getRandomSquare(board) {
   let availableSquares = [];
 
@@ -85,7 +94,17 @@ export function getRandomSquare(board) {
   return availableSquares[randomIndex];
 }
 
-export function getSmartSquare(board, currentMoveNumber) {
+// GameMode: Medium
+export function getWeightedSquare(board, currentMoveNumber) {
+  const randomNumber = Math.random();
+
+  return randomNumber <= 0.6 ?
+    getBestSquare(board, currentMoveNumber) :
+    getRandomSquare(board);
+}
+
+// GameMode: Hard
+export function getBestSquare(board, currentMoveNumber) {
   let bestScore = -Infinity;
   let bestMove;
 
@@ -172,5 +191,6 @@ export const Pieces =  {
 
 export const GameMode = {
   Easy: 'Easy',
+  Medium: 'Medium',
   Hard: 'Hard'
 }

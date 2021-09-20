@@ -5,10 +5,9 @@ import {
   originalGameState,
   isValidMove,
   placeMove,
-  getRandomSquare,
+  getSquare,
   getWinner,
   boardIsFull,
-  getSmartSquare,
   GameMode
 } from "../Shared/helpers";
 import './Game.css';
@@ -32,9 +31,7 @@ class Game extends Component {
   }
 
   makeComputerMove() {
-    const [row, column] = this.state.gameMode === GameMode.Easy ?
-      getRandomSquare(this.state.board, this.state.moveNumber) :
-      getSmartSquare(this.state.board, this.state.moveNumber);
+    const [row, column] = getSquare(this.state.board, this.state.moveNumber, this.state.gameMode);
     const newBoard = placeMove(this.state.board, this.state.humansTurn, row, column);
     const winner = getWinner(newBoard, row, column, this.state.humansTurn);
 
@@ -57,7 +54,7 @@ class Game extends Component {
   }
 
   switchGameMode($event) {
-    const newGameMode = $event.target.value === GameMode.Easy ? GameMode.Easy : GameMode.Hard;
+    const newGameMode = $event.target.value;
     this.setState({gameMode: newGameMode});
   }
 

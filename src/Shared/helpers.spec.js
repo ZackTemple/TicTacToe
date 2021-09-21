@@ -9,7 +9,7 @@ import {
 import * as faker from 'faker';
 
 describe('originalGameState', () => {
-  it('should return an object with the default Game state', () => {
+  it('should return an object with the default Game state whenever called without a specified game mode (defaulted to Easy)', () => {
     const expectedGameState = {
       board: originalBoardState(),
       winner: null,
@@ -19,6 +19,20 @@ describe('originalGameState', () => {
     }
 
     const gameState = originalGameState();
+
+    expect(gameState).toEqual(expectedGameState);
+  });
+
+  it('should return an object with the default Game state with the specified game mode', () => {
+    const expectedGameState = {
+      board: originalBoardState(),
+      winner: null,
+      humansTurn: true,
+      moveNumber: 0,
+      gameMode: GameMode.Hard
+    }
+
+    const gameState = originalGameState(GameMode.Hard);
 
     expect(gameState).toEqual(expectedGameState);
   });
